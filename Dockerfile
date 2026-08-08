@@ -7,3 +7,5 @@ RUN apk add --no-cache git github-cli \
 WORKDIR /home/workspace
 
 VOLUME ["/home/workspace", "/root/.config/opencode", "/root/.local/share/opencode"]
+
+CMD ["web", "--hostname", "0.0.0.0"]
