@@ -1,6 +1,7 @@
 # OpenCode development image
 
-The official Alpine-based OpenCode image with Git and the GitHub CLI added.
+The official Alpine-based OpenCode image with Git, the GitHub CLI, Node.js, npm,
+and pnpm added.
 
 ## Build
 

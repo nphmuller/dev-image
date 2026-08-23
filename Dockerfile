@@ -1,6 +1,6 @@
 FROM ghcr.io/anomalyco/opencode:latest
 
-RUN apk add --no-cache git github-cli \
+RUN apk add --no-cache git github-cli nodejs npm pnpm \
     && git config --global user.name "Nick Muller" \
     && git config --global user.email "3781551+nphmuller@users.noreply.github.com"
 
