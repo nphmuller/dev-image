@@ -20,8 +20,10 @@ RUN apt-get update \
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN npm install --global pnpm \
+RUN npm install --global pnpm@10 \
     && curl -fsSL https://opencode.ai/v2/install | bash \
+    && /root/.opencode/bin/opencode2 --version \
+    && pnpm --version \
     && git config --global user.name "Nick Muller" \
     && git config --global user.email "3781551+nphmuller@users.noreply.github.com"
 
@@ -31,5 +33,5 @@ VOLUME ["/home/workspace", "/root/.config/opencode", "/root/.local/share/opencod
 
 EXPOSE 4096
 
-ENTRYPOINT ["opencode2"]
+ENTRYPOINT ["/root/.opencode/bin/opencode2"]
 CMD ["serve", "--hostname", "0.0.0.0", "--port", "4096"]
