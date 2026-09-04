@@ -21,10 +21,13 @@ RUN apt-get update \
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN npm install --global pnpm@10 \
-    && curl -fsSL https://opencode.ai/v2/install | bash \
-    && /root/.opencode/bin/opencode2 --version \
-    && pnpm --version \
-    && git config --global user.name "Nick Muller" \
+    && pnpm --version
+
+ARG OPENCODE_VERSION
+RUN curl -fsSL https://opencode.ai/v2/install | bash -s -- --version "${OPENCODE_VERSION}" \
+    && /root/.opencode/bin/opencode2 --version
+
+RUN git config --global user.name "Nick Muller" \
     && git config --global user.email "3781551+nphmuller@users.noreply.github.com"
 
 WORKDIR /home/workspace

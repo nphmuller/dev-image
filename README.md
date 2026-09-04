@@ -3,6 +3,9 @@
 An Ubuntu-based development image with the OpenCode 2.0 beta, Git, the GitHub
 CLI, Node.js, npm, and pnpm.
 
+Scheduled builds resolve the current OpenCode beta version before building, so
+new beta releases invalidate the cached installation layer automatically.
+
 ## Build
 
 ```sh

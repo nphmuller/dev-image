@@ -39,6 +39,12 @@ jobs:
             type=raw,value=latest
             type=sha
 
+      - name: Resolve OpenCode beta version
+        id: opencode
+        run: |
+          version=$(curl -fsSL https://registry.npmjs.org/@opencode-ai%2fcli/beta | jq -er .version)
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
       - name: Build and publish image
         uses: docker/build-push-action@v6
         with:
@@ -46,6 +52,8 @@ jobs:
           file: ./Dockerfile
           pull: true
           push: true
+          build-args: |
+            OPENCODE_VERSION=${{ steps.opencode.outputs.version }}
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
           cache-from: type=gha
