@@ -33,8 +33,8 @@ RUN node --version \
     && pnpm --version
 
 ARG OPENCODE_VERSION
-RUN curl -fsSL https://opencode.ai/install | bash -s -- --version "${OPENCODE_VERSION}" \
-    && /root/.opencode/bin/opencode --version
+RUN curl -fsSL https://opencode.ai/v2/install | bash -s -- --version "${OPENCODE_VERSION}" \
+    && /root/.opencode/bin/opencode2 --version
 
 RUN git config --global user.name "Nick Muller" \
     && git config --global user.email "3781551+nphmuller@users.noreply.github.com"
@@ -45,5 +45,5 @@ VOLUME ["/home/workspace", "/root/.config/opencode", "/root/.local/share/opencod
 
 EXPOSE 4096
 
-ENTRYPOINT ["/root/.opencode/bin/opencode"]
+ENTRYPOINT ["/root/.opencode/bin/opencode2"]
 CMD ["serve", "--hostname", "0.0.0.0", "--port", "4096"]
