@@ -39,10 +39,10 @@ jobs:
             type=raw,value=latest
             type=sha
 
-      - name: Resolve OpenCode beta version
+      - name: Resolve latest OpenCode version
         id: opencode
         run: |
-          version=$(curl -fsSL https://registry.npmjs.org/@opencode-ai%2fcli/beta | jq -er .version)
+          version=$(curl -fsSL https://opencode.ai/update/api/latest/cli/npm | jq -er .version)
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
       - name: Build and publish image
