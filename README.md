@@ -17,6 +17,7 @@ docker build -t opencode-dev .
 The mount destinations match the container this repository was created in:
 
 - `/home/workspace` contains checked-out projects.
+- `/root/.config/gh` contains GitHub CLI credentials and configuration.
 - `/root/.config/opencode` contains OpenCode configuration.
 - `/root/.local/share/opencode` contains credentials, sessions, and other
   persistent OpenCode data.
@@ -28,6 +29,7 @@ must be supplied when the container is run. For example:
 docker run --rm -it \
   -p 4096:4096 \
   -v /path/to/workspace:/home/workspace \
+  -v /path/to/github/config:/root/.config/gh \
   -v /path/to/opencode/config:/root/.config/opencode \
   -v /path/to/opencode/storage:/root/.local/share/opencode \
   opencode-dev

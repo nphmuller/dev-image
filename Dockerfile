@@ -41,7 +41,7 @@ RUN git config --global user.name "Nick Muller" \
 
 WORKDIR /home/workspace
 
-VOLUME ["/home/workspace", "/root/.config/opencode", "/root/.local/share/opencode"]
+VOLUME ["/home/workspace", "/root/.config/gh", "/root/.config/opencode", "/root/.local/share/opencode"]
 
 EXPOSE 4096
 
