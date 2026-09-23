@@ -1,10 +1,12 @@
 # OpenCode development image
 
 An Ubuntu-based development image with OpenCode, Git, the GitHub
-CLI, Node.js, npm, and pnpm.
+CLI, Node.js, npm, pnpm, and Google Chrome (amd64).
 
 Scheduled builds resolve the latest OpenCode version before building, so new
-releases invalidate the cached installation layer automatically.
+releases invalidate the cached OpenCode installation layer automatically.
+Chrome is installed in an earlier layer, which can be reused across OpenCode
+updates. Rebuild without that layer's cache to pick up a newer Chrome release.
 
 ## Build
 
@@ -41,4 +43,13 @@ shell:
 
 ```sh
 docker run --rm -it --entrypoint /bin/sh opencode-dev
+```
+
+Chrome is available as `google-chrome`. For headless use in the default
+root-run container, pass `--no-sandbox`; `--disable-dev-shm-usage` avoids
+Docker's small default shared-memory limit. For example:
+
+```sh
+google-chrome --headless --no-sandbox --disable-dev-shm-usage \
+  --dump-dom 'data:text/html,<h1>Chrome works</h1>'
 ```

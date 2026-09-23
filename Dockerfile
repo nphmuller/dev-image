@@ -27,6 +27,13 @@ RUN apt-get update \
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+RUN apt-get update \
+    && curl -fsSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+        -o /tmp/google-chrome.deb \
+    && apt-get install --yes --no-install-recommends /tmp/google-chrome.deb \
+    && rm /tmp/google-chrome.deb \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN node --version \
     && npm --version \
     && npm install --global pnpm@10 \
